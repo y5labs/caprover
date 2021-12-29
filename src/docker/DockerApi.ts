@@ -6,7 +6,7 @@ import {
     IDockerApiPort,
     IDockerContainerResource,
     PreDeployFunction,
-    VolumesTypes,
+    VolumesTypes
 } from '../models/OtherTypes'
 import BuildLog from '../user/BuildLog'
 import CaptainConstants from '../utils/CaptainConstants'
@@ -78,6 +78,11 @@ class DockerApi {
             ListenAddr: `0.0.0.0:${port}`,
             AdvertiseAddr: advertiseAddr,
             ForceNewCluster: false,
+            DefaultAddrPool: [
+                '172.34.0.0/16',
+                '172.35.0.0/16'
+            ],
+            SubnetSize: 24
         }
 
         Logger.d(`Starting swarm at ${advertiseAddr}`)
